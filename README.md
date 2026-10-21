@@ -1,8 +1,8 @@
 Проект запускается командой "docker compose up -d",
 Выключается "docker compose down"
 
-Фронтенд запущен на localhost:5500
-Бэкэнд запущен на localhost:8080
+Фронтенд запущен на localhost:5500, 
+Бэкэнд запущен на localhost:8080, 
 База Данных запущена на localhost:5432
 
 
