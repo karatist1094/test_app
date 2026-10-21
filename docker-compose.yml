@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+      - "8080:8080"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend_test_app
+    network_mode: "service:db"
+    restart: on-failure
+    depends_on:
+      - db
+
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "5500:80"
+    volumes:
+      - ./frontend_test_app:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
